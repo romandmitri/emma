@@ -3,6 +3,9 @@ import { db } from "@/src/common/adapters/kysely/db";
 import Link from "next/link";
 import { Fragment } from "react";
 
+// REMINDER: Force cache reset when searchParams NOT used.
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
 	const users = await db.selectFrom("users").selectAll().execute();
 
