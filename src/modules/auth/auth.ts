@@ -17,7 +17,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			clientSecret: Config.WorkOS_ClientSecret,
 			authorization: {
 				url: "https://api.workos.com/user_management/authorize",
-				params: { provider: "authkit", response_type: "code" },
+				params: {
+					provider: "authkit",
+					response_type: "code",
+					prompt: "login",
+					screen_hint: "sign-in",
+				},
 			},
 			token: {
 				url: "https://api.workos.com/user_management/authenticate",

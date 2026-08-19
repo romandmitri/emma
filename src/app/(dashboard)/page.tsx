@@ -14,8 +14,6 @@ export default async function Page() {
 	const session = await auth();
 	const users = await db.selectFrom("users").selectAll().execute();
 
-	const isUser = Boolean(session?.user);
-
 	return (
 		<div className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-8">
 			<header className="border-border flex items-center justify-between border-b pb-4">
@@ -41,7 +39,7 @@ export default async function Page() {
 								type="submit"
 								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-medium transition-colors"
 							>
-								Sign In
+								{"Sign In"}
 							</button>
 						</form>
 					)}
