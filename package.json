@@ -1,0 +1,34 @@
+{
+	"name": "emma",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "concurrently \"npm run dev:loader\" \"next dev -p 2200\"",
+		"dev:css": "tailwindcss -i src/modules/widget/widget.css -o src/modules/widget/widget.generated.css --watch",
+		"dev:loader": "concurrently \"npm run dev:css\" \"esbuild src/modules/widget/loader.tsx --bundle --format=iife --minify --target=es2020 --loader:.css=text --outfile=src/public/loader.generated.js --watch\"",
+		"build": "npm run build:loader && next build",
+		"build:css": "tailwindcss -i src/modules/widget/widget.css -o src/modules/widget/widget.generated.css --minify",
+		"build:loader": "npm run build:css && esbuild src/modules/widget/loader.tsx --bundle --format=iife --minify --target=es2020 --loader:.css=text --outfile=src/public/loader.generated.js",
+		"start": "next start"
+	},
+	"dependencies": {
+		"esbuild": "0.28.2",
+		"next": "16.3.1",
+		"react": "19.2.8",
+		"react-dom": "19.2.8"
+	},
+	"devDependencies": {
+		"@tailwindcss/cli": "^4.3.3",
+		"@tailwindcss/postcss": "4.3.3",
+		"@types/node": "26.2.0",
+		"@types/react": "19.2.18",
+		"@types/react-dom": "19.2.4",
+		"clsx": "2.1.1",
+		"concurrently": "10.0.5",
+		"prettier": "3.9.6",
+		"prettier-plugin-tailwindcss": "0.8.1",
+		"tailwind-merge": "3.6.0",
+		"tailwindcss": "4.3.3",
+		"typescript": "7.0.2"
+	}
+}
