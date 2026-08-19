@@ -26,8 +26,10 @@ export const Widget = (p: Props) => {
 					// "dark",
 					"bg-secondary text-primary",
 					{ "fixed inset-0": wc.isOpen },
+					"flex flex-row gap-2",
 				)}
 			>
+				<div>{"emma"}</div>
 				<div>{!isOpen && <button onClick={() => wc.setIsOpen(true)}>{"open"}</button>}</div>
 				<div>{isOpen && <button onClick={() => wc.setIsOpen(false)}>{"close"}</button>}</div>
 			</div>
