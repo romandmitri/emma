@@ -5,7 +5,7 @@ import { Fragment } from "react";
 export default function Page() {
 	return (
 		<div className={"flex flex-col"}>
-			<div>{"home"}</div>
+			<div>{"EMMA"}</div>
 			{[
 				//
 				Routes.Widget_Embed,
