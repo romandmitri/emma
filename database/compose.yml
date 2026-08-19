@@ -1,0 +1,20 @@
+services:
+
+  emma-database:
+    image: postgres:16-alpine
+    container_name: emma-database
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - target: 5432
+        published: 2232
+    volumes:
+      - emma_database_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+
+volumes:
+  emma_database_data:
+    driver: local

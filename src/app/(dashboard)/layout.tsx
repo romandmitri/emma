@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Dashboard",
+	title: "Emma", // "Dashboard",
 };
 
 export default function Layout(p: LayoutProps<"/">) {
