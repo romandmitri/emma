@@ -1,11 +1,12 @@
 import { createDb, pool } from "@/src/common/adapters/kysely/db";
 import { runSeed, type SeedEnvironment } from "@/src/common/adapters/kysely/seeds";
+import { Config } from "@/src/common/Config";
 
 async function main() {
 	const args = process.argv.slice(2);
 	let targetEnv: SeedEnvironment = "local";
 
-	const nodeEnv = (process.env.NODE_ENV as string) || "";
+	const nodeEnv = Config.NodeEnv as string;
 	const appEnv = (process.env.APP_ENV as string) || "";
 
 	if (args.includes("--cluster") || args.includes("cluster")) {

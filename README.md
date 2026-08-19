@@ -16,8 +16,13 @@ This project is hosted on [emma.romandmitri.com](https://emma.romandmitri.com) v
 Create `/.env` (or `/.env.local`) file with the following keys, as needed:
 
 ```env
+AUTH_DURATION=100d
+AUTH_SECRET=abc...
 DEV_ALPHA=bravo!
+DEV_DISPLAY=true
 DATABASE_URL=postgresql://postgres:postgres@localhost:2232/postgres
+WORKOS_API_KEY=sk_test_a2V...cDQ
+WORKOS_CLIENT_ID=client_01M...3SG
 ```
 
 ## Local Database (Docker)

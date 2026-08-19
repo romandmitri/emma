@@ -1,3 +1,4 @@
+import { Config } from "@/src/common/Config";
 import dotenv from "dotenv";
 import fs from "node:fs";
 import path from "node:path";
@@ -16,17 +17,17 @@ export interface DbConfig {
 }
 
 export const getDbConfig = (): DbConfig => {
-	const url = process.env.DATABASE_URL ?? "";
+	const url = Config.DatabaseUrl ?? "";
 
 	const isLocal = url.includes("localhost") || url.includes("127.0.0.1");
-	const isSsl = url.includes("sslmode=require") || url.includes("neon.tech") || (!isLocal && process.env.NODE_ENV === "production");
+	const isSsl = url.includes("sslmode=require") || url.includes("neon.tech") || (!isLocal && Config.NodeEnv === "production");
 
 	return {
 		connectionString: url,
 		poolConfig: {
 			connectionString: url,
 			ssl: isSsl ? { rejectUnauthorized: false } : false,
-			max: process.env.NODE_ENV === "production" ? 10 : 5,
+			max: Config.NodeEnv === "production" ? 10 : 5,
 			idleTimeoutMillis: 30000,
 			connectionTimeoutMillis: 5000,
 		},

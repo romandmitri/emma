@@ -1,5 +1,6 @@
 import { getDbConfig } from "@/src/common/adapters/kysely/config";
 import type { Database } from "@/src/common/adapters/kysely/Database";
+import { Config } from "@/src/common/Config";
 import { Kysely, PostgresDialect } from "kysely";
 import pg from "pg";
 
@@ -29,7 +30,7 @@ export const db =
 		dialect: new PostgresDialect({ pool }),
 	});
 
-if (process.env.NODE_ENV !== "production") {
+if (Config.NodeEnv !== "production") {
 	globalForDb.pool = pool;
 	globalForDb.db = db;
 }

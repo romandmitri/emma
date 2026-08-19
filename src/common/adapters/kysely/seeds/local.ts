@@ -4,6 +4,9 @@ import type { Kysely } from "kysely";
 // TODO: reidenzon - Rework this AI trash!
 
 export async function seedLocal(db: Kysely<Database>): Promise<void> {
+	// TODO: reidenzon - Setup users, groups, etc..
+	return;
+
 	await db
 		.insertInto("users")
 		.values([
