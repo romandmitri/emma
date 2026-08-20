@@ -6,7 +6,7 @@
 		"dev": "concurrently \"npm run dev:loader\" \"npm run db:up && next dev -p 2200\"",
 		"dev:css": "tailwindcss -i src/modules/widget/widget.css -o src/modules/widget/widget.generated.css --watch",
 		"dev:loader": "concurrently \"npm run dev:css\" \"esbuild src/modules/widget/loader.tsx --bundle --format=iife --minify --target=es2020 --loader:.css=text --outfile=src/public/loader.generated.js --watch\"",
-		"build": "npm run db:migrate && npm run build:loader && next build",
+		"build": "npm run db:migrate && npm run db:seed && npm run build:loader && next build",
 		"build:css": "tailwindcss -i src/modules/widget/widget.css -o src/modules/widget/widget.generated.css --minify",
 		"build:loader": "npm run build:css && esbuild src/modules/widget/loader.tsx --bundle --format=iife --minify --target=es2020 --loader:.css=text --outfile=src/public/loader.generated.js",
 		"db:up": "docker compose -f database/compose.yml up -d",
