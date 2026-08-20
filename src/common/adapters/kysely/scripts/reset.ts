@@ -1,11 +1,12 @@
 import { createDb, pool } from "@/src/common/adapters/kysely/db";
-import { runSeed } from "@/src/common/adapters/kysely/seeds";
+import { seed } from "@/src/common/adapters/kysely/seed";
 import { sql } from "kysely";
 import { TSFileMigrationProvider } from "kysely-ctl";
 import { Migrator } from "kysely/migration";
 import path from "node:path";
 
 async function main() {
+	console.log("Database reset...");
 	const db = createDb(pool);
 
 	try {
@@ -24,8 +25,9 @@ async function main() {
 		});
 
 		await migrator.migrateToLatest();
-		await runSeed("local", db);
-		console.log("✨ Database successfully reset, migrated, and seeded!");
+		await seed();
+
+		console.log("Database successfully reset, migrated, and seeded!");
 	} finally {
 		await pool.end();
 	}

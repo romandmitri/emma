@@ -1,32 +1,10 @@
-import { createDb, pool } from "@/src/common/adapters/kysely/db";
-import { runSeed, type SeedEnvironment } from "@/src/common/adapters/kysely/seeds";
-import { Config } from "@/src/common/Config";
+import { pool } from "@/src/common/adapters/kysely/db";
+import { seed } from "@/src/common/adapters/kysely/seed";
 
 async function main() {
-	const args = process.argv.slice(2);
-	let targetEnv: SeedEnvironment = "local";
-
-	const nodeEnv = Config.NodeEnv as string;
-	const appEnv = (process.env.APP_ENV as string) || "";
-
-	if (args.includes("--cluster") || args.includes("cluster")) {
-		targetEnv = "cluster";
-	} else if (args.includes("--prod") || args.includes("--production") || args.includes("production")) {
-		targetEnv = "production";
-	} else if (args.includes("--staging") || args.includes("staging")) {
-		targetEnv = "staging";
-	} else if (args.includes("--local") || args.includes("local")) {
-		targetEnv = "local";
-	} else if (nodeEnv === "production" || nodeEnv === "staging" || appEnv === "production" || appEnv === "staging") {
-		targetEnv = "cluster";
-	}
-
-	console.log(`🚀 Database Seed: Target environment is "${targetEnv}"...`);
-
-	const db = createDb(pool);
-
+	console.log(`Database seed...`);
 	try {
-		await runSeed(targetEnv, db);
+		await seed();
 	} catch (err) {
 		console.error("Seed execution failed with error:", err);
 		process.exit(1);

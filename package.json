@@ -17,13 +17,13 @@
 		"db:migrate": "kysely migrate:latest",
 		"db:migrate:status": "kysely migrate:list",
 		"db:seed": "tsx src/common/adapters/kysely/scripts/seed.ts",
-		"db:seed:local": "tsx src/common/adapters/kysely/scripts/seed.ts --local",
-		"db:seed:cluster": "tsx src/common/adapters/kysely/scripts/seed.ts --cluster",
 		"db:reset": "tsx src/common/adapters/kysely/scripts/reset.ts",
 		"start": "next start"
 	},
 	"dependencies": {
+		"@base-ui/react": "1.7.0",
 		"@workos-inc/node": "10.10.0",
+		"class-variance-authority": "0.7.1",
 		"dotenv": "17.4.2",
 		"esbuild": "0.28.2",
 		"kysely": "0.29.5",
@@ -31,7 +31,8 @@
 		"next-auth": "5.0.0-beta.32",
 		"pg": "8.23.0",
 		"react": "19.2.8",
-		"react-dom": "19.2.8"
+		"react-dom": "19.2.8",
+		"uuid": "14.0.2"
 	},
 	"devDependencies": {
 		"@tailwindcss/cli": "4.3.3",

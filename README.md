@@ -43,8 +43,6 @@ npm run db:create <name>    # Create a new migration file
 npm run db:migrate          # Apply all pending migrations (latest)
 npm run db:migrate:status   # Check status of migrations
 npm run db:seed             # Seed database (local dev or cluster based on NODE_ENV)
-npm run db:seed:local       # Seed with local demo users, API keys, memoirs, and resumes
-npm run db:seed:cluster     # Seed with cluster/production safe base settings (idempotent)
 npm run db:reset            # Reset public schema, re-run migrations, and seed local data
 ```
 
@@ -54,7 +52,6 @@ When deployed to Vercel with NeonDB:
 
 - The build script (`npm run build`) automatically executes `npm run db:migrate` before building Next.js to ensure target database schemas are updated before
   traffic hits the deployment.
-- Cluster seeding can be executed via `npm run db:seed:cluster`.
 
 ## Development
 

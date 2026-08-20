@@ -1,15 +1,5 @@
 import { Config } from "@/src/common/Config";
-import dotenv from "dotenv";
-import fs from "node:fs";
-import path from "node:path";
 import type { PoolConfig } from "pg";
-
-const rootDir = process.cwd();
-const envLocal = path.resolve(rootDir, ".env.local");
-const envDefault = path.resolve(rootDir, ".env");
-
-if (fs.existsSync(envLocal)) dotenv.config({ path: envLocal });
-if (fs.existsSync(envDefault)) dotenv.config({ path: envDefault });
 
 export interface DbConfig {
 	connectionString: string;

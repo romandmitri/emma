@@ -140,6 +140,12 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+
+	/* https://ui.shadcn.com/docs/components/base/button#cursor */
+	button:not(:disabled),
+	[role="button"]:not(:disabled) {
+		cursor: pointer;
+	}
 }
 
 .dark input[data-com-onepassword-filled] {

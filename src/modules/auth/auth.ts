@@ -7,6 +7,8 @@ export const workos = new WorkOS(Config.WorkOS_ClientSecret, {
 	clientId: Config.WorkOS_ClientId,
 });
 
+// TODO: reidenzon - Finesse the AI slop...
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
 	providers: [
 		{
