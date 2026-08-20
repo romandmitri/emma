@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300"
+   height="100"
+   viewBox="0 0 300 100"
+   id="svg2"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-119.21386,-1108.3619)">
+    <g
+       aria-label="W"
+       id="text2500"
+       style="font-weight:bold;font-size:131.913px;font-family:monospace;-inkscape-font-specification:'monospace, Bold';text-align:center;text-anchor:middle;fill:#0088aa;fill-opacity:0.996301;stroke-width:2;stroke-linejoin:round">
+      <g
+         aria-label="EMMA"
+         id="text1666"
+         style="font-size:127.484px;fill:#008080">
+        <path
+           d="m 179.85676,1204.8303 h -57.89069 v -92.9363 h 57.89069 v 16.1845 h -39.52751 v 20.0439 h 35.79262 v 16.1844 h -35.79262 v 24.339 h 39.52751 z"
+           id="path3048" />
+        <path
+           d="m 193.61357,1111.894 h 21.91131 l 11.08016,40.7725 11.0179,-40.7725 h 22.03581 v 92.9363 h -15.811 v -74.4486 l -9.8352,40.6479 h -14.62829 l -9.95969,-40.6479 v 74.4486 h -15.811 z"
+           id="path3050" />
+        <path
+           d="m 270.36541,1111.894 h 21.91131 l 11.08015,40.7725 11.01791,-40.7725 h 22.03581 v 92.9363 h -15.81101 v -74.4486 l -9.83519,40.6479 H 296.1361 l -9.95969,-40.6479 v 74.4486 h -15.811 z"
+           id="path3052" />
+        <path
+           d="m 380.10872,1128.701 -8.65248,38.0335 h 17.36721 z m -11.20465,-16.807 h 22.47155 l 25.08596,92.9363 h -18.36317 l -5.72682,-22.9695 h -24.58798 l -5.60233,22.9695 h -18.36317 z"
+           id="path3054" />
+      </g>
+    </g>
+  </g>
+</svg>

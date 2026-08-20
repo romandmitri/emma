@@ -1,10 +1,21 @@
 import { dbJson } from "@/src/common/adapters/kysely/db-query";
 import { Email, normalizeEmail } from "@/src/common/utlity/email/Email";
 import { isDelta } from "@/src/modules/audit/type/AuditDelta";
+import { RoleKey } from "@/src/modules/permissions/type/RoleKey";
 import { RoleKeyCollection } from "@/src/modules/permissions/type/RoleKeyCollection";
-import { UserDetails } from "@/src/modules/user/type/UserDetails";
+import { UserDetails, UserDetailsInClient } from "@/src/modules/user/type/UserDetails";
 import { UserId } from "@/src/modules/user/type/UserId";
 import { UserInsert, UserSelect, UserUpdate } from "@/src/modules/user/type/UserTable";
+
+export type UserInClient = {
+	id: UserId;
+	email: Email;
+	details: UserDetailsInClient;
+	displayName: string;
+	displayInitials: string;
+	isRoot?: boolean;
+	roles: RoleKey[];
+};
 
 export class User {
 	id: UserId;
@@ -39,14 +50,30 @@ export class User {
 		return this.details.name || this.email.split("@")[0] || "User";
 	};
 
-	getInitials = (): string | undefined => {
+	getDisplayInitials = (): string => {
 		const parts = (this.details.name ?? "")
 			.split(" ")
 			.map((p) => p.toUpperCase()[0])
 			.splice(0, 2)
 			.join("");
-		if (!parts.length) return;
+		if (!parts.length) return "";
 		return parts;
+	};
+
+	getIsRoot = (): boolean => {
+		return this.roles.hasRole(RoleKey.Root);
+	};
+
+	toClient = (): UserInClient => {
+		return {
+			id: this.id,
+			email: normalizeEmail(this.email),
+			details: this.details.toClient(),
+			displayName: this.getDisplayName(),
+			displayInitials: this.getDisplayInitials(),
+			isRoot: this.getIsRoot(),
+			roles: this.roles.getRoles(),
+		};
 	};
 
 	toDatabaseInsert = (): UserInsert => {

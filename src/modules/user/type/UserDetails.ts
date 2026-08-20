@@ -1,6 +1,10 @@
 import { AuditDelta, joinDelta } from "@/src/modules/audit/type/AuditDelta";
 import { UserName } from "@/src/modules/user/type/UserName";
 
+export type UserDetailsInClient = {
+	name?: UserName;
+};
+
 export type UserDetailsInDatabase = {
 	name?: UserName;
 };
@@ -19,6 +23,12 @@ export class UserDetails {
 		return new UserDetails({
 			name: from.name,
 		});
+	};
+
+	toClient = (): UserDetailsInClient => {
+		return {
+			name: this.name,
+		};
 	};
 
 	toDatabase = (): UserDetailsInDatabase => {

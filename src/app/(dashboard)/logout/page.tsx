@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export default function Page() {
 	useEffect(() => {
 		const searchParams = new URLSearchParams(window.location.search);
-		const callbackUrl = searchParams.get("callbackUrl") || Routes.Dashboard;
+		const callbackUrl = searchParams.get("callbackUrl") || Routes.Home;
 		signOut({ callbackUrl });
 	}, []);
 

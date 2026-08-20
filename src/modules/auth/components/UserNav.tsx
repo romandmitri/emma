@@ -8,7 +8,7 @@ export const UserNav = async (p: Props) => {
 	const user = await getCurrentUser();
 	if (!user) return;
 	const displayName = user.getDisplayName();
-	const initials = user.getInitials();
+	const initials = user.getDisplayInitials();
 
 	// TODO: reidenzon - Clean up this AI slop!
 
