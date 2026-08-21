@@ -1,6 +1,6 @@
 {
 	"name": "emma",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"private": true,
 	"scripts": {
 		"dev": "concurrently \"npm run dev:loader\" \"npm run db:up && next dev -p 2200\"",
