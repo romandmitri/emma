@@ -60,7 +60,7 @@ export const WidgetContent = (p: Props) => {
 	};
 
 	return (
-		<Card className={"dark fixed inset-0 z-50 flex flex-col rounded-none border-0 ring-0"}>
+		<Card className={"dark rounded-4 fixed inset-4 z-50 flex flex-col border shadow-lg sm:inset-auto sm:right-4 sm:bottom-4 sm:h-[600px] sm:w-96 sm:max-h-[calc(100vh-2rem)]"}>
 			<CardHeader>
 				<CardTitle className={"flex flex-row items-center"}>
 					{/*<BrandLogo isWide className={"h-3 w-max"} />*/}
@@ -96,18 +96,19 @@ export const WidgetContent = (p: Props) => {
 					<ConversationScrollButton />
 				</Conversation>
 			</CardContent>
-			<CardFooter className={"flex-col gap-2 rounded-none"}>
+			<CardFooter className={"flex-col gap-2 rounded-none p-2"}>
 				<PromptInput onSubmit={handleSubmit}>
 					<PromptInputBody>
 						<PromptInputTextarea
 							//
+							autoFocus
 							onChange={(e) => setText(e.target.value)}
 							placeholder={"Say something..."}
 							value={text}
 						/>
 					</PromptInputBody>
 					<PromptInputFooter>
-						<div />
+						<div></div>
 						<PromptInputSubmit disabled={!text && !status} status={status} />
 					</PromptInputFooter>
 				</PromptInput>

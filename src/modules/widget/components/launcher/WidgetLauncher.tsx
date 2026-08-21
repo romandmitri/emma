@@ -19,7 +19,7 @@ export const WidgetLauncher = (p: Props) => {
 	// TODO: reidenzon - Make multiple modes, ie: button, tile, etc...
 
 	return (
-		<div className={""}>
+		<div className={"dark"}>
 			<Button
 				//
 				onClick={handleOpen}

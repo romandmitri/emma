@@ -9,9 +9,9 @@ import { WidgetId } from "@/src/modules/widget/type/WidgetId";
 import { QueryClientProvider } from "@tanstack/react-query";
 
 type Props = {
-	widgetId: WidgetId | undefined;
-	isOpen?: boolean;
 	baseUrl?: string;
+	isOpen?: boolean;
+	widgetId: WidgetId | undefined;
 };
 
 export const Widget = (p: Props) => {

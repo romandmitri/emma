@@ -8,6 +8,8 @@ import { createRoot } from "react-dom/client";
 	const script = document.currentScript as HTMLScriptElement | null;
 	if (!script) return console.error("loader.script.MISSING");
 
+	const isOpen = script.getAttribute("data-is-open") == "true";
+
 	const targetId = script.getAttribute("data-target-element");
 	if (!targetId) return console.error("loader.targetId.MISSING");
 
@@ -15,10 +17,7 @@ import { createRoot } from "react-dom/client";
 	if (!widgetId) return console.error("loader.widgetId.MISSING");
 
 	const placeholder = "__SERVER_ORIGIN_PLACEHOLDER__";
-	const baseUrl =
-		placeholder !== "__SERVER_ORIGIN_PLACEHOLDER__"
-			? placeholder
-			: new URL(script.src, window.location.href).origin;
+	const baseUrl = placeholder !== "__SERVER_ORIGIN_PLACEHOLDER__" ? placeholder : new URL(script.src, window.location.href).origin;
 
 	const element = document.getElementById(targetId);
 	if (!element) return console.error("loader.element.MISSING");
@@ -33,5 +32,12 @@ import { createRoot } from "react-dom/client";
 	shadow.adoptedStyleSheets = [sheet];
 
 	const root = createRoot(shadow);
-	root.render(<Widget widgetId={widgetId} baseUrl={baseUrl} />);
+	root.render(
+		<Widget
+			//
+			baseUrl={baseUrl}
+			isOpen={isOpen}
+			widgetId={widgetId}
+		/>,
+	);
 })();
