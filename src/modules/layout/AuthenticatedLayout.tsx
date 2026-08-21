@@ -13,6 +13,8 @@ type Props = {
 
 export const AuthenticatedLayout = async (p: Props) => {
 	const user = await getCurrentUser();
+
+	// TODO: reidenzon - If missing user... should redirect to login.
 	if (!user) return null;
 
 	return (

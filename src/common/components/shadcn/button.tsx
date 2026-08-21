@@ -40,9 +40,10 @@ function Button({
 	className,
 	variant = "default",
 	size = "default",
+	isLoading,
 	...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { isLoading?: boolean }) {
-	const isDisabled = props.isLoading || props.disabled;
+	const isDisabled = isLoading || props.disabled;
 	return (
 		<ButtonPrimitive
 			//

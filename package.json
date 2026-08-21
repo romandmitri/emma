@@ -22,6 +22,7 @@
 	},
 	"dependencies": {
 		"@base-ui/react": "1.7.0",
+		"@hookform/resolvers": "5.9.1",
 		"@workos-inc/node": "10.10.0",
 		"class-variance-authority": "0.7.1",
 		"dotenv": "17.4.2",
@@ -33,7 +34,9 @@
 		"pg": "8.23.0",
 		"react": "19.2.8",
 		"react-dom": "19.2.8",
-		"uuid": "14.0.2"
+		"react-hook-form": "7.85.0",
+		"uuid": "14.0.2",
+		"zod": "4.4.3"
 	},
 	"devDependencies": {
 		"@svgr/cli": "8.1.0",

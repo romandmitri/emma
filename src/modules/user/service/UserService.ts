@@ -37,5 +37,6 @@ export async function syncWorkOSUser(input: SyncWorkOSUserInput): Promise<User> 
 // TODO: reidenzon - Move to a better place?!
 export const getCurrentUser = cache(async (): Promise<User | undefined> => {
 	const session = await auth();
+	// TODO: reidenzon - Consider fallback via [email] which helps on local resets.
 	return await UserTabler.select({ id: session?.user.id });
 });

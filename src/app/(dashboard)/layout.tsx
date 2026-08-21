@@ -1,7 +1,8 @@
+import { Toaster } from "@/src/common/components/shadcn/toast";
+import { SessionProvider } from "@/src/modules/auth/components/SessionProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/src/app/(dashboard)/globals.css";
-import { SessionProvider } from "@/src/modules/auth/components/SessionProvider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -22,6 +23,7 @@ export default function Layout(p: LayoutProps<"/">) {
 		<html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}>
 			<body className="flex min-h-full flex-col">
 				<SessionProvider>{p.children}</SessionProvider>
+				<Toaster />
 			</body>
 		</html>
 	);

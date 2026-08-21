@@ -1,7 +1,6 @@
 import { type Kysely, sql } from "kysely";
 
 export async function up(db: Kysely<unknown>): Promise<void> {
-	// NOTE: Making singular "user" table is NOT ideal possible because "user" keyword is reserved.
 	await sql`
 
 		CREATE TABLE users

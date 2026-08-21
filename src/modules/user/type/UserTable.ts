@@ -7,14 +7,14 @@ import { UserDetailsInDatabase } from "@/src/modules/user/type/UserDetails";
 import { UserId } from "@/src/modules/user/type/UserId";
 import { Expression, Generated, Insertable, Selectable, Updateable } from "kysely";
 
-export interface UserTable {
+export type UserTable = {
 	created_at: Generated<Date>;
 	updated_at: Generated<Date>;
 	id: UserId;
 	email: Email;
 	details: UserDetailsInDatabase;
 	roles: RoleKey[];
-}
+};
 
 export type UserInsert = Insertable<UserTable>;
 export type UserSelect = Selectable<UserTable>;
@@ -31,7 +31,11 @@ export class UserTabler {
 		return User.fromDatabase(result)!;
 	};
 
-	static select = async (p: { id?: UserId; email?: Email }): Promise<User | undefined> => {
+	static select = async (p: {
+		//
+		id?: UserId;
+		email?: Email;
+	}): Promise<User | undefined> => {
 		const id = validateUuid(p.id);
 		if (!id && !p.email) return undefined;
 		const row = await db
@@ -51,7 +55,7 @@ export class UserTabler {
 		await db
 			//
 			.updateTable("users")
-			.set(newUser.toDatabaseUpdate())
+			.set(newUser.toDatabaseUpdate(oldUser))
 			.where("id", "=", newUser.id)
 			.execute();
 	};

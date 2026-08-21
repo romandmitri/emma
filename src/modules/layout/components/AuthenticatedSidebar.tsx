@@ -39,7 +39,9 @@ export const AuthenticatedSidebar = (p: Props) => {
 				<div className={"flex-1"} />
 				<RootBox isInset>
 					<AuthenticatedSidebar_Group label={"Root"}></AuthenticatedSidebar_Group>
-					<AuthenticatedSidebar_Group label={"Root: Widget"}>
+				</RootBox>
+				<RootBox isInset>
+					<AuthenticatedSidebar_Group label={"Developer"}>
 						<AuthenticatedSidebar_Link href={Routes.Widget_Embed} icon={ThemeIcon.Widget} title={"Embed"} />
 						<AuthenticatedSidebar_Link href={Routes.Widget_Native} icon={ThemeIcon.Widget} title={"Native"} />
 						<AuthenticatedSidebar_Link href={Routes.Widget_Loader} icon={ThemeIcon.Widget} title={"Loader"} />
