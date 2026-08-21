@@ -1,38 +1,28 @@
 "use client";
 
-import { cn } from "@/src/common/components/cn";
-import { useWidgetContext, WidgetProvider } from "@/src/modules/widget/context/WidgetProvider";
+import { TooltipProvider } from "@/src/common/components/shadcn/tooltip";
+import { queryClient } from "@/src/modules/tankstack/query/QueryKey";
+import { WidgetContent } from "@/src/modules/widget/components/content/WidgetContent";
+import { WidgetLauncher } from "@/src/modules/widget/components/launcher/WidgetLauncher";
+import { WidgetProvider } from "@/src/modules/widget/context/WidgetProvider";
+import { WidgetId } from "@/src/modules/widget/type/WidgetId";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 type Props = {
-	apiKey: string;
+	widgetId: WidgetId | undefined;
+	isOpen?: boolean;
+	baseUrl?: string;
 };
 
 export const Widget = (p: Props) => {
-	const apiKey = p.apiKey;
-	console.log("Widget", { apiKey });
-
-	const wc = useWidgetContext({
-		apiKey: p.apiKey,
-		isOpen: false,
-	});
-
-	const isOpen = wc.isOpen;
-
 	return (
-		<WidgetProvider context={wc}>
-			<div
-				className={cn(
-					//
-					// "dark",
-					"bg-secondary text-primary",
-					{ "fixed inset-0": wc.isOpen },
-					"flex flex-row gap-2",
-				)}
-			>
-				<div>{"emma"}</div>
-				<div>{!isOpen && <button onClick={() => wc.setIsOpen(true)}>{"open"}</button>}</div>
-				<div>{isOpen && <button onClick={() => wc.setIsOpen(false)}>{"close"}</button>}</div>
-			</div>
-		</WidgetProvider>
+		<QueryClientProvider client={queryClient}>
+			<TooltipProvider>
+				<WidgetProvider widgetId={p.widgetId} isOpen={p.isOpen} baseUrl={p.baseUrl}>
+					<WidgetLauncher />
+					<WidgetContent />
+				</WidgetProvider>
+			</TooltipProvider>
+		</QueryClientProvider>
 	);
 };

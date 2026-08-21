@@ -1,6 +1,10 @@
+import { WidgetId } from "@/src/modules/widget/type/WidgetId";
+
 export const Routes = {
 	Api_Auth_SignIn: "/api/auth/signin",
 	Api_Auth_SignOut: "/api/auth/signout",
+	Api_Chat: () => "/api/chat",
+	Api_Widget: (id: WidgetId) => `/api/widget/${id}`,
 
 	Home: "/",
 

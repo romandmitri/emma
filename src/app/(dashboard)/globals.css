@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/*
+https://streamdown.ai/
+https://streamdown.ai/docs/styling
+ */
+@source "../../../node_modules/streamdown/dist/*.js";
+
 /* https://ui.shadcn.com/docs/installation/manual */
 /* https://tailwindcss.com/docs/dark-mode */
 /* https://ui.shadcn.com/docs/theming */

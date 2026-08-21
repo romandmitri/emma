@@ -1,13 +1,17 @@
 "use client";
 
 import { Routes } from "@/src/app/routes";
+import { WidgetId } from "@/src/modules/widget/type/WidgetId";
 import { Fragment, useEffect, useRef } from "react";
 
-type Props = {};
+type Props = {
+	widgetId?: WidgetId;
+};
 
 export const WidgetEmbedder = (p: Props) => {
-	const id = "widget";
-	const key = "api-key";
+	const targetId = "widget";
+	// TODO: reidenzon - Get the right value!
+	const widgetId = p.widgetId ?? "widget-id";
 	const url = Routes.Widget_Loader;
 	const scriptRef = useRef<HTMLScriptElement | undefined>(undefined);
 
@@ -19,8 +23,8 @@ export const WidgetEmbedder = (p: Props) => {
 		scriptRef.current = document.createElement("script");
 		scriptRef.current.src = url;
 		scriptRef.current.async = true;
-		scriptRef.current.setAttribute("data-api-key", key);
-		scriptRef.current.setAttribute("data-target-element", id);
+		scriptRef.current.setAttribute("data-target-element", targetId);
+		scriptRef.current.setAttribute("data-widget-id", widgetId);
 
 		document.body.appendChild(scriptRef.current);
 
@@ -32,7 +36,7 @@ export const WidgetEmbedder = (p: Props) => {
 
 	return (
 		<Fragment>
-			<div id={id} />
+			<div id={targetId} />
 		</Fragment>
 	);
 };

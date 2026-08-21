@@ -90,7 +90,7 @@ export class User {
 		up.updated_at = new Date();
 		if (from?.id !== this.id) up.id = this.id;
 		if (from?.email !== this.email) up.email = normalizeEmail(this.email);
-		if (isDelta(from?.details, this.details)) up.details = this.details;
+		if (isDelta(from?.details, this.details)) up.details = this.details.toDatabase();
 		if (isDelta(from?.roles, this.roles)) up.roles = dbJson(this.roles.getRoles());
 		return up;
 	};

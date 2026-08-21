@@ -8,7 +8,7 @@ export default async function Page() {
 	const story = await StoryTabler.ensure(user?.id);
 
 	return (
-		<AuthenticatedLayout title={"Story"}>
+		<AuthenticatedLayout title={"Story (Raw)"}>
 			<div></div>
 			{story && <StoryEditor story={story.toClient()} />}
 		</AuthenticatedLayout>

@@ -5,14 +5,20 @@ import { createRoot } from "react-dom/client";
 (function () {
 	console.log("widget.loader...");
 
-	const script = document.currentScript;
+	const script = document.currentScript as HTMLScriptElement | null;
 	if (!script) return console.error("loader.script.MISSING");
 
-	const apiKey = script.getAttribute("data-api-key");
 	const targetId = script.getAttribute("data-target-element");
-
-	if (!apiKey) return console.error("loader.apiKey.MISSING");
 	if (!targetId) return console.error("loader.targetId.MISSING");
+
+	const widgetId = script.getAttribute("data-widget-id");
+	if (!widgetId) return console.error("loader.widgetId.MISSING");
+
+	const placeholder = "__SERVER_ORIGIN_PLACEHOLDER__";
+	const baseUrl =
+		placeholder !== "__SERVER_ORIGIN_PLACEHOLDER__"
+			? placeholder
+			: new URL(script.src, window.location.href).origin;
 
 	const element = document.getElementById(targetId);
 	if (!element) return console.error("loader.element.MISSING");
@@ -27,5 +33,5 @@ import { createRoot } from "react-dom/client";
 	shadow.adoptedStyleSheets = [sheet];
 
 	const root = createRoot(shadow);
-	root.render(<Widget apiKey={apiKey} />);
+	root.render(<Widget widgetId={widgetId} baseUrl={baseUrl} />);
 })();

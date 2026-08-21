@@ -16,6 +16,7 @@ export const Config = {
 	DevDisplay: process.env.DEV_DISPLAY == "true",
 	DatabaseUrl: process.env.DATABASE_URL,
 	NodeEnv: process.env.NODE_ENV ?? "",
+	Vercel_AiGateway_Key: process.env.VERCEL_AI_GATEWAY_KEY,
 	Version: process.env.VERSION,
 	WorkOS_ClientId: process.env.WORKOS_CLIENT_ID,
 	WorkOS_ClientSecret: process.env.WORKOS_API_KEY,

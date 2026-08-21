@@ -1,4 +1,5 @@
 import { Toaster } from "@/src/common/components/shadcn/toast";
+import { TooltipProvider } from "@/src/common/components/shadcn/tooltip";
 import { SessionProvider } from "@/src/modules/auth/components/SessionProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -22,8 +23,10 @@ export default function Layout(p: LayoutProps<"/">) {
 	return (
 		<html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}>
 			<body className="flex min-h-full flex-col">
-				<SessionProvider>{p.children}</SessionProvider>
-				<Toaster />
+				<TooltipProvider>
+					<SessionProvider>{p.children}</SessionProvider>
+					<Toaster />
+				</TooltipProvider>
 			</body>
 		</html>
 	);
