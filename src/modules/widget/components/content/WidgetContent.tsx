@@ -13,6 +13,8 @@ import {
 } from "@/src/common/components/ai-elements/prompt-input";
 import { Button } from "@/src/common/components/shadcn/button";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/common/components/shadcn/card";
+import { withHtml } from "@/src/common/utlity/hmtl/Raw";
+import { UserBadge } from "@/src/modules/user/components/UserBadge";
 import { useWidget } from "@/src/modules/widget/context/WidgetProvider";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
@@ -24,7 +26,10 @@ type Props = {};
 
 export const WidgetContent = (p: Props) => {
 	const wc = useWidget();
-	const widget = wc.widget!;
+	const bundle = wc.bundle!;
+
+	const widget = bundle.widget;
+	const user = bundle.user;
 
 	const [text, setText] = useState<string>("");
 	const chatApi = wc.baseUrl ? `${wc.baseUrl}${Routes.Api_Chat()}` : Routes.Api_Chat();
@@ -57,8 +62,13 @@ export const WidgetContent = (p: Props) => {
 	return (
 		<Card className={"dark fixed inset-0 z-50 flex flex-col rounded-none border-0 ring-0"}>
 			<CardHeader>
-				<CardTitle>{"emma"}</CardTitle>
-				<CardDescription className={"text-xs"}>{"This is an alpha version using cheap AI models so it is NOT always accurate."}</CardDescription>
+				<CardTitle className={"flex flex-row items-center"}>
+					{/*<BrandLogo isWide className={"h-3 w-max"} />*/}
+					<UserBadge user={user} />
+				</CardTitle>
+				<CardDescription className={"text-xs"}>
+					{withHtml("This is an <b>alpha</b> version using cheap AI models so it is NOT always accurate.")}
+				</CardDescription>
 				<CardAction>
 					<Button onClick={() => wc.setIsOpen(false)} variant={"link"}>
 						{"Close"}
@@ -86,7 +96,7 @@ export const WidgetContent = (p: Props) => {
 					<ConversationScrollButton />
 				</Conversation>
 			</CardContent>
-			<CardFooter className={"rounded-none"}>
+			<CardFooter className={"flex-col gap-2 rounded-none"}>
 				<PromptInput onSubmit={handleSubmit}>
 					<PromptInputBody>
 						<PromptInputTextarea
@@ -101,6 +111,13 @@ export const WidgetContent = (p: Props) => {
 						<PromptInputSubmit disabled={!text && !status} status={status} />
 					</PromptInputFooter>
 				</PromptInput>
+				<div className={"text-muted-foreground text-xs"}>
+					{"Powered by "}
+					<a href={"https://github.com/romandmitri/emma"} target={"_blank"}>
+						{"EMMA"}
+					</a>
+					{" project."}
+				</div>
 			</CardFooter>
 		</Card>
 	);

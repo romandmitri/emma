@@ -1,7 +1,7 @@
 "use client";
 
 import { Routes } from "@/src/app/routes";
-import { WidgetInClient } from "@/src/modules/widget/type/Widget";
+import { WidgetBundleInClient } from "@/src/modules/widget/context/WidgetBundle";
 import { WidgetId } from "@/src/modules/widget/type/WidgetId";
 
 export type GetWidgetRequest = {
@@ -10,7 +10,7 @@ export type GetWidgetRequest = {
 };
 
 export type GetWidgetResponse = {
-	widget: WidgetInClient;
+	bundle: WidgetBundleInClient;
 };
 
 type Request = GetWidgetRequest;

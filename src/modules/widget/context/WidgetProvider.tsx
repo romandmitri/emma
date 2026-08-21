@@ -1,17 +1,18 @@
 "use client";
 
 import { QueryKey } from "@/src/modules/tankstack/query/QueryKey";
+import { WidgetBundleInClient } from "@/src/modules/widget/context/WidgetBundle";
 import { api_GET_widget } from "@/src/modules/widget/query/api-get-widget";
-import { WidgetInClient } from "@/src/modules/widget/type/Widget";
 import { WidgetId } from "@/src/modules/widget/type/WidgetId";
 import { useQuery } from "@tanstack/react-query";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 export type WidgetContextInterface = {
 	widgetId: WidgetId | undefined;
-	widget: WidgetInClient | undefined;
+	bundle: WidgetBundleInClient | undefined;
 	isOpen: boolean;
 	setIsOpen: (is: boolean) => void;
+	// TODO: reidenzon - Rework [baseUrl] if possible... ugly concept.
 	baseUrl?: string;
 };
 
@@ -31,17 +32,17 @@ export const WidgetProvider = (p: {
 		queryKey: QueryKey.Widget(p.widgetId),
 		queryFn: () => api_GET_widget({ widgetId: p.widgetId!, baseUrl: p.baseUrl }),
 	});
-	const widget = apiGet.data?.widget;
+	const bundle = apiGet.data?.bundle;
 
 	const context: WidgetContextInterface = {
 		widgetId: p.widgetId,
-		widget: widget,
+		bundle: bundle,
 		isOpen: isOpen,
 		setIsOpen: setIsOpen,
 		baseUrl: p.baseUrl,
 	};
 
-	if (!widget) return null;
+	if (!bundle) return null;
 
 	return <WidgetContext.Provider value={context}>{p.children}</WidgetContext.Provider>;
 };
