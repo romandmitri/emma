@@ -27,7 +27,7 @@ const register = (...models: AiModel[]): AiModelInfo => {
 
 export const AiModel = {
 	Widget_Chat: register(
-		"meta/llama-3.1-8b", // cheap... any good?!
+		// "meta/llama-3.1-8b", // cheap... but generally NOT accurate, sloppy response.
 		"google/gemini-3.5-flash-lite",
 	),
 };
