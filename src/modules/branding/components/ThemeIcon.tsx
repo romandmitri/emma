@@ -4,6 +4,7 @@ import { LucideBookText, LucideBox, LucideDot, LucideX } from "lucide-react";
 
 export const ThemeIcon = {
 	Common_Clear: LucideX,
+	Common_Close: LucideX,
 
 	Story: LucideBookText,
 

@@ -11,6 +11,7 @@ export type UserInClient = {
 	id: UserId;
 	email: Email;
 	details: UserDetailsInClient;
+	// TODO: reidenzon - Provide Avatar URLs here! (with emotions)
 	displayName: string;
 	displayInitials: string;
 	isRoot?: boolean;

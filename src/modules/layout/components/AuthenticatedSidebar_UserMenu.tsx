@@ -29,13 +29,13 @@ export const AuthenticatedSidebar_UserMenu = (p: Props) => {
 					<DropdownMenuTrigger
 						render={
 							<SidebarMenuButton variant={"default"} size={"lg"}>
-								<UserBadge user={user} />
+								<UserBadge user={user} isAvatar />
 							</SidebarMenuButton>
 						}
 					/>
 					<DropdownMenuContent align={"end"} side={sidebar.isMobile ? "bottom" : "right"}>
 						<DropdownMenuGroup>
-							<UserBadge user={user} />
+							<UserBadge user={user} isAvatar />
 						</DropdownMenuGroup>
 						{/*<DropdownMenuSeparator />*/}
 						{/*<DropdownMenuGroup>{"GROUP"}</DropdownMenuGroup>*/}

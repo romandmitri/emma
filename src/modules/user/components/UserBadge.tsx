@@ -3,6 +3,7 @@ import { UserInClient } from "@/src/modules/user/type/User";
 
 type Props = {
 	user: UserInClient | undefined;
+	isAvatar?: boolean;
 };
 
 export const UserBadge = (p: Props) => {
@@ -11,7 +12,7 @@ export const UserBadge = (p: Props) => {
 
 	return (
 		<div className={"flex flex-row items-center gap-2"}>
-			<UserAvatar user={user} />
+			{p.isAvatar && <UserAvatar user={user} />}
 			<div className={"flex flex-col"}>
 				<div className={"truncate text-sm font-medium"}>{user.displayName}</div>
 				<div className={"text-muted-foreground truncate text-xs"}>{user.email}</div>

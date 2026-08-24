@@ -11,9 +11,12 @@ import {
 	PromptInputSubmit,
 	PromptInputTextarea,
 } from "@/src/common/components/ai-elements/prompt-input";
+import { Badge } from "@/src/common/components/shadcn/badge";
 import { Button } from "@/src/common/components/shadcn/button";
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/common/components/shadcn/card";
-import { withHtml } from "@/src/common/utlity/hmtl/Raw";
+import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/src/common/components/shadcn/card";
+import { ThemeIcon } from "@/src/modules/branding/components/ThemeIcon";
+import { getLatestEmotion } from "@/src/modules/emotion/type/EmotionTool";
+import { UserAvatar } from "@/src/modules/user/components/UserAvatar";
 import { UserBadge } from "@/src/modules/user/components/UserBadge";
 import { useWidget } from "@/src/modules/widget/context/WidgetProvider";
 import { useChat } from "@ai-sdk/react";
@@ -59,19 +62,26 @@ export const WidgetContent = (p: Props) => {
 		setText("");
 	};
 
+	// TODO: reidenzon - Separate the conversation stuff into separate file.
+
 	return (
-		<Card className={"dark rounded-4 fixed inset-4 z-50 flex flex-col border shadow-lg sm:inset-auto sm:right-4 sm:bottom-4 sm:h-[600px] sm:w-96 sm:max-h-[calc(100vh-2rem)]"}>
+		<Card
+			size={"sm"}
+			className={
+				"dark rounded-4 fixed inset-4 z-50 flex flex-col border shadow-lg sm:inset-auto sm:right-4 sm:bottom-4 sm:h-[600px] sm:max-h-[calc(100vh-2rem)] sm:w-96"
+			}
+		>
 			<CardHeader>
-				<CardTitle className={"flex flex-row items-center"}>
-					{/*<BrandLogo isWide className={"h-3 w-max"} />*/}
-					<UserBadge user={user} />
+				<CardTitle className={"flex flex-row items-start justify-between"}>
+					<div className={"flex flex-row gap-2"}>
+						<UserAvatar user={user} size={"lg"} />
+						<UserBadge user={user} />
+					</div>
+					<Badge variant={"secondary"}>{getLatestEmotion(messages)}</Badge>
 				</CardTitle>
-				<CardDescription className={"text-xs"}>
-					{withHtml("This is an <b>alpha</b> version using cheap AI models so it is NOT always accurate.")}
-				</CardDescription>
 				<CardAction>
 					<Button onClick={() => wc.setIsOpen(false)} variant={"link"}>
-						{"Close"}
+						<ThemeIcon.Common_Close />
 					</Button>
 				</CardAction>
 			</CardHeader>
@@ -96,7 +106,7 @@ export const WidgetContent = (p: Props) => {
 					<ConversationScrollButton />
 				</Conversation>
 			</CardContent>
-			<CardFooter className={"flex-col gap-2 rounded-none p-2"}>
+			<CardFooter className={"flex-col gap-1 rounded-none"}>
 				<PromptInput onSubmit={handleSubmit}>
 					<PromptInputBody>
 						<PromptInputTextarea

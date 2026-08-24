@@ -1,9 +1,10 @@
 import { AiModel, getAiModel } from "@/src/common/adapters/ai/AiModel";
+import { EmotionTool } from "@/src/modules/emotion/type/EmotionTool";
 import { getPrompt, PromptPath } from "@/src/modules/prompt/type/PromptPath";
 import { StoryTabler } from "@/src/modules/story/type/StoryTable";
 import { WidgetId } from "@/src/modules/widget/type/WidgetId";
 import { WidgetTabler } from "@/src/modules/widget/type/WidgetTable";
-import { convertToModelMessages, streamText, UIMessage } from "ai";
+import { convertToModelMessages, isStepCount, streamText, UIMessage } from "ai";
 import { NextResponse } from "next/server";
 
 // Allow streaming responses up to 30 seconds
@@ -30,14 +31,20 @@ export async function POST(req: Request) {
 	const story = await StoryTabler.ensure(widget.userId);
 	if (!story) return NextResponse.json({ error: "Story not found" }, { status: 404 });
 
+	const tools = {
+		setEmotion: EmotionTool,
+	};
+
 	const result = streamText({
 		model: getAiModel(AiModel.Widget_Chat),
+		stopWhen: isStepCount(2),
 		instructions: [
 			//
 			await getPrompt(PromptPath.Widget_Chat),
 			"The story:\n\n" + story.raw,
 		].join("\n"),
-		messages: await convertToModelMessages(request.messages),
+		messages: await convertToModelMessages(request.messages, { tools }),
+		tools: tools,
 	});
 
 	return result.toUIMessageStreamResponse();
