@@ -1,4 +1,4 @@
-import { aiGateway } from "@/src/common/adapters/ai/ai";
+import { openrouter } from "@/src/common/adapters/ai/openrouter";
 import { GatewayModelId } from "@ai-sdk/gateway";
 import { createRetryableModel } from "ai-retry/language-model";
 
@@ -13,22 +13,27 @@ export type AiModelInfo = {
 
 const register = (...models: AiModel[]): AiModelInfo => {
 	return {
-		model: aiGateway(models[0]),
-		retries: models.map((m) => aiGateway(m)), // always retry 1st model.
+		// model: aiGateway(models[0]),
+		model: openrouter(models[0]),
+		retries: models.map((m) => openrouter(m)), // always retry 1st model.
 	};
 };
 
 // https://openrouter.ai/models
 // https://openrouter.ai/announcements/simplifying-our-platform-fee
-// https://vercel.com/ai-gateway/models
+// "google/gemini-3.5-flash-lite"	$0.30/$2.50
+// "google/gemini-3.7-flash"		$1.50/$7.50 | 75% off at $0.375/$1.875
 
-// "meta/llama-3.1-8b" 				in=$0.02/M	out=$0.05/M
-// "google/gemini-3.5-flash-lite"	in=$0.30/M	out=$2.50/M
+// https://vercel.com/ai-gateway/models
+// "meta/llama-3.1-8b" 				$0.02/$0.05
+// "google/gemini-3.5-flash-lite"	$0.30/$2.50
+// "google/gemini-3.7-flash"		$1.50/$7.50 | 50% off at $0.50/$3.75
 
 export const AiModel = {
 	Widget_Chat: register(
 		// "meta/llama-3.1-8b", // cheap... but generally NOT accurate, sloppy response.
-		"google/gemini-3.5-flash-lite",
+		"google/gemini-3.5-flash-lite", // accurate enough, fast response
+		// "google/gemini-3.7-flash", // accurate, but feels slow
 	),
 };
 

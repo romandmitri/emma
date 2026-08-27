@@ -25,6 +25,7 @@
 		"@ai-sdk/react": "4.0.74",
 		"@base-ui/react": "1.7.0",
 		"@hookform/resolvers": "5.9.1",
+		"@openrouter/ai-sdk-provider": "3.0.0",
 		"@streamdown/cjk": "1.0.3",
 		"@streamdown/code": "1.1.1",
 		"@streamdown/math": "1.0.2",
