@@ -70,5 +70,7 @@ export class StoryTabler {
 			.set(newStory.toDatabaseUpdate(oldStory))
 			.where("id", "=", newStory.id)
 			.execute();
+
+		// TODO: reidenzon - Implement Audit tracer for old/new story data.
 	};
 }

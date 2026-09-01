@@ -5,6 +5,7 @@ import path from "node:path";
 const prefix = path.join(process.cwd(), "src/modules/prompt/prompts");
 
 export const PromptPath = {
+	Story_Update: path.join(prefix, "story-update.md"),
 	Widget_Chat: path.join(prefix, "widget-chat.md"),
 };
 

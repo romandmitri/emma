@@ -15,7 +15,8 @@ export const Routes = {
 	// Resume: "/resume",
 	// Resume_Master: "/resume/master",
 
-	Story: "/story",
+	StoryEditor: "/story/editor",
+	StoryUpdater: "/story/updater",
 
 	Widget_Embed: "/widget/embed",
 	Widget_Loader: "/widget/loader.js",

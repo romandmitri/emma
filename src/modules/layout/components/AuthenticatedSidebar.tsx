@@ -33,7 +33,8 @@ export const AuthenticatedSidebar = (p: Props) => {
 			</SidebarHeader>
 			<SidebarContent>
 				<AuthenticatedSidebar_Group>
-					<AuthenticatedSidebar_Link href={Routes.Story} icon={ThemeIcon.Story} title={"Story (Raw)"} />
+					<AuthenticatedSidebar_Link href={Routes.StoryEditor} icon={ThemeIcon.Story} title={"Story Editor"} />
+					<AuthenticatedSidebar_Link href={Routes.StoryUpdater} icon={ThemeIcon.Story} title={"Story Updater"} />
 				</AuthenticatedSidebar_Group>
 				<AuthenticatedSidebar_Group label={"Resume"}></AuthenticatedSidebar_Group>
 				<div className={"flex-1"} />

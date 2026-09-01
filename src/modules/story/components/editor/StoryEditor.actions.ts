@@ -21,7 +21,7 @@ export const StoryEditor_update = async (id: StoryId | undefined, story: StoryUp
 	await StoryTabler.update(existingStory, newStory);
 
 	// TODO: reidenzon - Can this be done on FE instead?!
-	revalidatePath(Routes.Story);
+	revalidatePath(Routes.StoryEditor);
 
 	return actSuccess(undefined);
 };

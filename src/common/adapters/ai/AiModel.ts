@@ -30,6 +30,10 @@ const register = (...models: AiModel[]): AiModelInfo => {
 // "google/gemini-3.7-flash"		$1.50/$7.50 | 50% off at $0.50/$3.75
 
 export const AiModel = {
+	Story_Update: register(
+		// "google/gemini-3.5-flash-lite", // struggles hard, fails validation.
+		"google/gemini-3.7-flash", // slow... approx. 5s or more
+	),
 	Widget_Chat: register(
 		// "meta/llama-3.1-8b", // cheap... but generally NOT accurate, sloppy response.
 		"google/gemini-3.5-flash-lite", // accurate enough, fast response
