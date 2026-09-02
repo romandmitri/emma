@@ -7,7 +7,7 @@ import { getPrompt, PromptPath } from "@/src/modules/prompt/type/PromptPath";
 import { StoryId } from "@/src/modules/story/type/StoryId";
 import { StoryTabler } from "@/src/modules/story/type/StoryTable";
 import { getCurrentUser } from "@/src/modules/user/service/UserService";
-import { Target } from "@romandmitri/ai-patch";
+import { Patchlet } from "@romandmitri/ai-patch";
 import { generateText, Output } from "ai";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -22,11 +22,8 @@ export const StoryUpdater_update = async (id: StoryId | undefined, update: strin
 	if (existingStory.userId !== currentUser.id) return actFail("Do NOT have permissions!");
 
 	const newStory = existingStory.clone();
-	const raw = newStory.raw ?? "";
 
-	const storyTarget = Target.fromContent(raw);
-	const storyPatches = storyTarget.toSchema();
-	// console.log("StoryUpdater_update.storyPatches", storyPatches);
+	const rawPatchlet = Patchlet.from(newStory.raw ?? "");
 
 	const aiResult = await generateText({
 		model: getAiModel(AiModel.Story_Update),
@@ -34,11 +31,11 @@ export const StoryUpdater_update = async (id: StoryId | undefined, update: strin
 		messages: [
 			//
 			{ role: "user", content: "The [update_instructions]:\n" + update },
-			{ role: "user", content: "The [raw_story]: \n" + raw },
+			{ role: "user", content: "The [raw_story]: \n" + rawPatchlet.content },
 		],
 		output: Output.object({
 			schema: z.object({
-				storyPatches: storyPatches,
+				storyPatches: rawPatchlet.toSchema(),
 			}),
 		}),
 	});
@@ -46,7 +43,7 @@ export const StoryUpdater_update = async (id: StoryId | undefined, update: strin
 	const output = aiResult.output;
 	console.log("StoryUpdater_update.output", output);
 
-	newStory.raw = storyTarget.apply(output.storyPatches);
+	newStory.raw = rawPatchlet.patch(output.storyPatches);
 	// console.log("StoryUpdater_update.rawUpdated", newStory.raw);
 
 	await StoryTabler.update(existingStory, newStory);

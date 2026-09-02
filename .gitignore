@@ -29,6 +29,8 @@
 # misc
 .DS_Store
 *.pem
+/tmp/*
+!/tmp/.gitkeep
 
 # debug
 npm-debug.log*
