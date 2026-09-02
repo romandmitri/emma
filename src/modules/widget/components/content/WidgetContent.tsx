@@ -68,7 +68,7 @@ export const WidgetContent = (p: Props) => {
 		<Card
 			size={"sm"}
 			className={
-				"dark rounded-4 fixed inset-4 z-50 flex flex-col border shadow-lg sm:inset-auto sm:right-4 sm:bottom-4 sm:h-[600px] sm:max-h-[calc(100vh-2rem)] sm:w-96"
+				"dark rounded-4 fixed inset-4 z-50 flex flex-col border shadow-lg sm:inset-auto sm:right-4 sm:bottom-4 sm:h-[calc(80vh-2rem)] sm:max-h-[calc(100vh-2rem)] sm:w-[calc(50vw)]"
 			}
 		>
 			<CardHeader>

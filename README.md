@@ -6,9 +6,10 @@
 
 The `emma` project is a platform that helps you convert a personal autobiography (or memoir) into a tailored resume and embed a chatbot that talks like you!
 
-Hosted on [emma.romandmitri.com](https://emma.romandmitri.com) via Vercel.
+Hosted on [emma.romandmitri.com](https://emma.romandmitri.com) via Vercel. Visit my website [romandmitri.com](https://www.romandmitri.com) to see it in
+action... just click the `EMMA` button!
 
-### Highlights
+## Highlights
 
 * Embedded chat widget
 * AI/LLM tooling integration
@@ -18,6 +19,10 @@ Hosted on [emma.romandmitri.com](https://emma.romandmitri.com) via Vercel.
 >
 > If you are interested in a full monorepo with CI/CD pipelines and GCP orchestration, check out
 > my [infrastructure](https://github.com/romandmitri/monorepo-docker-gke) repository.
+
+### Widget Preview
+
+<img src="docs/images/widget.jpg" width="400" alt="Emma Widget showing conversation with AI representation of Roman Eidenzon">
 
 ---
 
